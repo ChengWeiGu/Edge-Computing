@@ -20,9 +20,9 @@ Thus, we can output trained weights `model_XXX.csv` and data `input-XXX.csv` for
 
 According to your system platform (x86 or arm64), please use the following ways to compile main.cpp:   
 - For x86, execute `cpp/arima_cpp_demo/x86/compile.sh`.   
-- For arm64, execute `cpp/arima_cpp_demo/arm64/build.sh` to compile main.cpp with `cpp/arima_cpp_demo/arm64/CMakeLists.txt`.   
+- For arm64, execute `cpp/arima_cpp_demo/arm64/build.sh` with `cpp/arima_cpp_demo/arm64/CMakeLists.txt`.   
 
-Finally, your can manage your folder like this   
+Finally, you can manage your folder like this   
 ```pgsql
 ar_wind_farm_arima_exe_file/
 ├── arm64-setable_preds/

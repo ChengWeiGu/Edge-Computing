@@ -1,0 +1,3 @@
+/home/davidgu/ar_dnn_cpp_demo/arm64/build_aarch64/CMakeFiles/run_model.dir
+/home/davidgu/ar_dnn_cpp_demo/arm64/build_aarch64/CMakeFiles/edit_cache.dir
+/home/davidgu/ar_dnn_cpp_demo/arm64/build_aarch64/CMakeFiles/rebuild_cache.dir

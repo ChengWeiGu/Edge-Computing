@@ -11,6 +11,13 @@ wsl.exe -d Ubuntu
 source /opt/weintek-sdk/dunfell-20250307-git/environment-setup-aarch64-weintek-linux 
 ```
 
+# Training Environment
+- Windows 11, Anaconda   
+- Install packages with   
+```bash
+pip install -r requirements.txt
+```
+
 # ARIMA(p,d,q)
 Training Scripts and Data Visualization of UTSD-Energy Wind Farm Data:   
 - `train_arima_energyfarm - p5d1q0.ipynb`   
@@ -27,13 +34,13 @@ Finally, you can manage your folder like this
 ar_wind_farm_arima_exe_file/
 ├── arm64-setable_preds/
 │   ├── run_model
-│   ├── model.csv
 │   ├── run_model.sh
+│   ├── model.csv
 │   └── input.csv
 ├── x86-setable-preds/
 │   ├── run_model
-│   ├── model.csv
 │   ├── run_model.sh
+│   ├── model.csv
 │   └── input.csv
 └── data_samples_28k.csv
 ```
@@ -42,8 +49,34 @@ you can execute `run_model.sh` for inference.
 
 # AR-like Dense NN
 Training Scripts and Data Visualization of UTSD-Energy Wind Farm Data:   
-- TBD
-- ...
+- `train_ar_dnn_energyfarm.ipynb`   
+
+Then, `*.tflite` and statistic info `*-std-mean.csv` are saved for purpose of prediction via cpp.    
+
+According to your system platform (x86 or arm64), please use the following ways to compile main.cpp:   
+- For x86, execute `cpp/ar_dnn_cpp_demo/x86/compile.sh`.   
+- For arm64, execute `cpp/ar_dnn_cpp_demo/arm64/build.sh` with `cpp/ar_dnn_cpp_demo/arm64/CMakeLists.txt`.   
+
+Finally, manage your folder like this   
+```pgsql
+ar_wind_farm_dnn_exe_file/
+├── arm64-setable_preds/
+│   ├── run_model
+│   ├── run_model.sh
+│   ├── input-dnn.csv
+│   ├── ar_dnn-w10-l16-l32-l16_windfarm_0620.tflite
+│   ├── ar_dnn-w10-l16-l32-l16_windfarm_0620-std-mean.csv
+│   └── lib/*.so # the shared library (all dependency, quite large) for tensorflow compiled under arm64
+└── x86-setable-preds/
+    ├── run_model
+    ├── run_model.sh
+    ├── input-dnn.csv
+    ├── ar_dnn-w10-l16-l32-l16_windfarm_0620.tflite
+    ├── ar_dnn-w10-l16-l32-l16_windfarm_0620-std-mean.csv
+    └── libtensorflow-lite.so # the shared library for tensorflow compiled under x86 (small)
+```
+
+Note `lib/*.so` in arm64 is large, one should compile before execute `run_model.sh`   
 
 # Classifier 1D-FCN
 Training Scripts and Data Visualization of FordA:   

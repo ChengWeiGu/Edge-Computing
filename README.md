@@ -12,8 +12,8 @@ source /opt/weintek-sdk/dunfell-20250307-git/environment-setup-aarch64-weintek-l
 ```
 
 # Training Environment
-- Windows 11, Anaconda   
-- Install packages with   
+- Windows 11, Anaconda, Python 3.11.11   
+- Install packages:   
 ```bash
 pip install -r requirements.txt
 ```
@@ -30,7 +30,7 @@ According to your system platform (x86 or arm64), please use the following ways 
 - For arm64, execute `cpp/arima_cpp_demo/arm64/build.sh` with `cpp/arima_cpp_demo/arm64/CMakeLists.txt`.   
 
 Finally, you can manage your folder like this   
-```pgsql
+```markdown
 ar_wind_farm_arima_exe_file/
 ├── arm64-setable_preds/
 │   ├── run_model
@@ -51,14 +51,14 @@ you can execute `run_model.sh` for inference.
 Training Scripts and Data Visualization of UTSD-Energy Wind Farm Data:   
 - `train_ar_dnn_energyfarm.ipynb`   
 
-Then, `*.tflite` and statistic info `*-std-mean.csv` are saved for purpose of prediction via cpp.    
+Thus, we can output `*.tflite` and standardization info `*-std-mean.csv` for purpose of prediction via cpp.    
 
-According to your system platform (x86 or arm64), please use the following ways to compile main.cpp:   
+Then, use the following ways to compile main.cpp:   
 - For x86, execute `cpp/ar_dnn_cpp_demo/x86/compile.sh`.   
 - For arm64, execute `cpp/ar_dnn_cpp_demo/arm64/build.sh` with `cpp/ar_dnn_cpp_demo/arm64/CMakeLists.txt`.   
 
-Finally, manage your folder like this   
-```pgsql
+Finally, manage your folder   
+```markdown
 ar_wind_farm_dnn_exe_file/
 ├── arm64-setable_preds/
 │   ├── run_model
@@ -76,7 +76,7 @@ ar_wind_farm_dnn_exe_file/
     └── libtensorflow-lite.so # the shared library for tensorflow compiled under x86 (small)
 ```
 
-Note `lib/*.so` in arm64 is large, one should compile before execute `run_model.sh`   
+Note `lib/*.so` in arm64 is too large. one should compile tf before execute `run_model.sh`   
 
 # Classifier 1D-FCN
 Training Scripts and Data Visualization of FordA:   

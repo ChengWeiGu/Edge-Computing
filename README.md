@@ -21,11 +21,13 @@ git clone https://github.com/tensorflow/tensorflow.git
 # 5. Build libtensorflow-lite.so under build-share
 cd ~/tensorflow
 rm -rf build-shared                # make sure clean
+
 cmake -S tensorflow/lite -B build-shared \
   -DCMAKE_BUILD_TYPE=Release       \
   -DBUILD_SHARED_LIBS=ON           \   # CMake 全域開關
   -DTFLITE_ENABLE_SHARED=ON        \   # TFLite 自己的開關
   -DTFLITE_ENABLE_XNNPACK=ON           # 建議打開，效能較好
+
 cmake --build build-shared -j$(nproc)
 
 # 6. check if the build is successful
@@ -56,6 +58,7 @@ source /opt/weintek-sdk/dunfell-20250307-git/environment-setup-aarch64-weintek-l
 # 2. Use CMake to cross-compile tf so, and use smaller cpu 8 --> 2 to avoid `OOM-killer`
 cd ~/tensorflow
 rm -rf build_aarch64 && mkdir build_aarch64  # 乾淨環境
+
 cmake -S tensorflow/lite -B build_aarch64 \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_SHARED_LIBS=ON \
@@ -64,6 +67,7 @@ cmake -S tensorflow/lite -B build_aarch64 \
   -DXNNPACK_ENABLE_ARM_I8MM=OFF \
   -DXNNPACK_ENABLE_ARM_BF16=OFF \
   -DCMAKE_CXX_STANDARD=17
+
 cmake --build build_aarch64 -j2 # use smaller cpu to compile (Wait for a period of time)
 ```
 

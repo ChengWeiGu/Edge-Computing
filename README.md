@@ -174,7 +174,33 @@ ar_wind_farm_dnn_exe_file/
 
 Note `lib/*.so` in arm64 is too large. one should compile tf before execute `run_model.sh`   
 
-# Classifier 1D-FCN
+# Conv1D on FordA
 Training Scripts and Data Visualization of FordA:   
-- TBD
-- ...
+- `train_cls_conv1d_fordA.ipynb`
+
+From the training script, we can prepare `*.tflite` file before compiling cpp.   
+- For x86, execute `cpp/conv1d_cpp_demo/x86/compile.sh`.
+- For arm64, execute `cpp/conv1d_cpp_demo/arm64/build.sh` with `cpp/conv1d_cpp_demo/arm64/CMakeLists.txt`.   
+
+Finally, manage your folder   
+```markdown
+cls_fordA_conv1d_exe_file/
+├── arm64/
+│   ├── run_model
+│   ├── run_model.sh
+│   ├── sample_idx_*.csv # there are 6 test samples
+│   ├── cls_1dcnn_forda_0612.tflite
+│   └── lib/*.so # the shared library (all dependency, quite large) for tensorflow compiled under arm64
+└── x86/
+    ├── run_model
+    ├── run_model.sh
+    ├── sample_idx_*.csv # there are 6 test samples
+    ├── cls_1dcnn_forda_0612.tflite
+    └── libtensorflow-lite.so # the shared library for tensorflow compiled under x86 (small)
+```
+
+After executing `run_model.sh`, predicted results for each test sample will be generated. If you open one of the result files, you will see something like:   
+```csv
+1, 0.95272
+```
+Here, `1` represents the predicted class, followed by its probability `0.95272`.   
